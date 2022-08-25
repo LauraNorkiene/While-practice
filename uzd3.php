@@ -1,9 +1,10 @@
 <?php
 
 if (isset($_POST['upload'])) {
+    print_r($_FILES);
     move_uploaded_file(
         $_FILES['filename']['tmp_name'],
-        'C:/xampp/htdocs/WhileND/' . $_FILES['filename']['name']
+        'C:/xampp/htdocs/' . $_FILES['filename']['name']
     );
 
 
@@ -11,15 +12,8 @@ if (isset($_POST['upload'])) {
     $failas = 'C:/xampp/htdocs/WhileND/' . $_FILES['filename']['name'];
     $f = fopen($failas, "r");
 
-    if ($f) {
-        $array = explode("\n", fread($f, filesize($failas)));
-        $maximum = "Didžiausia oro temperatūra " . (max($array)) . " °C";
-        $minimum = "Mažiausia oro temperatūra " . (min($array)) . " °C";
-        $array = array_filter($array);
-        $average = "Vidutinė oro temperatūra " . (int) (array_sum($array) / count($array)) . " °C";
-    }
 
-    fclose($f);
+    // fclose($f);
 }
 
 ?>
